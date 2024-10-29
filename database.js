@@ -5,10 +5,14 @@ var connection = mysql.createConnection({
   password : '123',
   database : 'bautismo_iglesia'
 });
- 
-connection.connect();
- 
-connection.query('SELECT * FROM PersonaBautismo ORDER BY id ASC', function (error, results, fields) {
+connection.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+
+
+var SELECT_Query= ()=>{
+connection.query('SELECT * FROM PersonaBautismo ORDER BY id ASC LIMIT 5', function (error, results, fields) {
   if (error) throw error;
   results.forEach(element => {
     console.log(element);
@@ -17,3 +21,7 @@ connection.query('SELECT * FROM PersonaBautismo ORDER BY id ASC', function (erro
 });
  
 connection.end();
+}
+
+
+module.exports= {SELECT_Query}

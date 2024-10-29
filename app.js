@@ -5,7 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-
+var connection= require('./database.js')
 const port = process.env.PORT;
 
 
@@ -35,6 +35,9 @@ app.use(function(req, res, next) {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+connection.SELECT_Q();
+
 
 // error handler
 app.use(function(err, req, res, next) {
