@@ -7,6 +7,7 @@ var express = require('express');
         this.app=express();
         this.port= process.env.PORT;
         this.routes();
+        this.middlewares();
     }
 
     routes(){
@@ -15,6 +16,9 @@ var express = require('express');
           });
     
 
+    }
+    middlewares(){
+        this.app.use(express.static ('public'));
     }
 
     startServer(){
