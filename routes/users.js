@@ -1,9 +1,28 @@
-var express = require('express');
-var router = express.Router();
+const {Router}=require('express');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+const router= Router();
+
+
+router.app.get('/',(req, res, next)=> {
+  res.json({
+      msg:'GET API'
+  });
+});
+router.app.put('/',(req, res, next)=> {
+  res.json({
+      msg:'PUT API'
+  });
+});
+router.app.post('/',(req, res, next)=> {
+  res.json({
+      msg:'POST API'
+  });
+});
+router.app.delete('/',(req, res, next)=> {
+  res.json({
+      msg:'DELETE API'
+  });
 });
 
-module.exports = router;
+
+module.export=router;

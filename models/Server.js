@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('express');
 
  
  class Server{
@@ -11,14 +12,16 @@ var express = require('express');
     }
 
     routes(){
-        this.app.get('/',(req, res, next)=> {
-            res.send('Hello World');
-          });
+        this.app.use('/users',require('../routes/users'))
+
+          
     
 
     }
     middlewares(){
+        this.app.use(cors());
         this.app.use(express.static ('public'));
+       
     }
 
     startServer(){
