@@ -7,12 +7,14 @@ var cors = require('express');
     constructor(){
         this.app=express();
         this.port= process.env.PORT;
+        this.usersEndpoint='/users';
         this.routes();
         this.middlewares();
+      
     }
 
     routes(){
-        this.app.use('/users',require('../routes/users'))
+        this.app.use( this.usersEndpoint,require('../routes/users.routes'))
 
           
     
