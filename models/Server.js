@@ -8,8 +8,9 @@ var cors = require('express');
         this.app=express();
         this.port= process.env.PORT;
         this.usersEndpoint='/users';
-        this.routes();
         this.middlewares();
+        this.routes();
+      
       
     }
 
@@ -22,6 +23,8 @@ var cors = require('express');
     }
     middlewares(){
         this.app.use(cors());
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: true }))
         this.app.use(express.static ('public'));
        
     }

@@ -1,9 +1,9 @@
 const {Router}=require('express');
-const {userGET,userPOST,userUPDATE, userDELETE}=require('../controllers/users.controller');
+const {userGET,userPOST,userPUT, userDELETE}=require('../controllers/users.controller');
 const router= Router();
 
 router.get('/',userGET);
-router.put('/',userUPDATE);
+router.put('/:id',userPUT);
 router.post('/',userPOST);
 router.delete('/',userDELETE);
 

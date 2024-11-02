@@ -1,20 +1,28 @@
-const{response}=require('express');
+const{response,request}=require('express');
 
 
-const userGET=(req, res=response)=> {
+const userGET=(req=request, res=response)=> {
+    const {q,name,apikey}=req.query;
     res.json({
-        msg:'GET API in controller folder'
+        msg:'GET API in controller folder',
+        name
     });
   }
 
 const userPOST=(req, res=response)=> {
+  
+    const {name,age}=req.body;
     res.json({
-        msg:'POST API in controller folder'
+        msg:'POST API in controller folder',
+        name,
+        age
     });
   }
-const userUPDATE=(req, res=response)=> {
+const userPUT=(req, res=response)=> {
+    const id =req.params.id
     res.json({
-        msg:'UPDATE API in controller folder'
+        msg:'UPDATE API in controller folder',
+        id
     });
   }
 const userDELETE=(req,res=response)=>{
@@ -28,6 +36,6 @@ const userDELETE=(req,res=response)=>{
 module.exports={
     userGET,
     userPOST,
-    userUPDATE,
+    userPUT,
     userDELETE
 }
