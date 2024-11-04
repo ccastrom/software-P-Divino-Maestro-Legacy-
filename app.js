@@ -14,7 +14,7 @@ const server= new Server();
 
 server.startServer();
 
-var connection= require('./database.js')
+// var connection= require('./database.js')
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
