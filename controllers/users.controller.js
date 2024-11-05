@@ -14,11 +14,6 @@ const userGET= async (req=request, res=response)=> {
             
         }
 
-        
-        
-       
-        
-
         res.json({
             resultQuery
         })
