@@ -1,27 +1,8 @@
 const{response,request}=require('express');
-const connection=require('../database');
+
 
 
 const userGET= async (req=request, res=response)=> {
-    try {
-        var [resultQuery]= await connection.query("SELECT * FROM Celebrante;")
-
-        console.table(resultQuery[4].nombre);
-
-        for (let i = 0; i < resultQuery.length; i++) {
-            const element = resultQuery[i].nombre;
-            console.log(element);
-            
-        }
-
-        res.json({
-            resultQuery
-        })
-       
-    } catch (error) {
-        console.log(error);
-        
-    }
 
     }
 const userPOST=(req, res=response)=> {

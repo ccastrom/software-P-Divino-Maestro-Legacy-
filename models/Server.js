@@ -2,6 +2,8 @@ var express = require('express');
 var cors = require('express');
 const path = require('path'); 
 
+const sequelize=require('../db/sequelize')
+
 
  
  class Server{
@@ -10,11 +12,24 @@ const path = require('path');
         this.app=express();
         this.port= process.env.PORT;
         this.usersEndpoint='/users';
+        this.databaseConnection();
         this.middlewares();
         this.routes();
       
       
     }
+
+    async databaseConnection(){
+        try {
+            await sequelize.authenticate();
+            console.log('Connection has been established successfully.');
+          } catch (error) {
+            console.error('Unable to connect to the database:', error);
+          }
+        }
+     
+    
+    
 
     routes(){
         this.app.use( this.usersEndpoint,require('../routes/users.routes'))
