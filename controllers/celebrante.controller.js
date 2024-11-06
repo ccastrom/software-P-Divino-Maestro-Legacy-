@@ -32,21 +32,47 @@ const celebranteGET= async (req=request, res=response)=> {
       
     
         }
-const celebrantePOST=(req, res=response)=> {
-  
-    const {name,age}=req.body;
-    res.json({
-        msg:'POST API in controller folder CELEBRANTE',
-        name,
-        age
-    });
+const celebrantePOST= async(req=request, res=response)=> {
+    const {body}=req;
+    try {
+        const celebrante = new Celebrante(body);
+        await celebrante.save();
+
+        res.json(celebrante);
+        
+    } catch (error) {
+        console.log(error),
+        res.status(500).json({   
+            msg:"An error appear"
+        })
+        
+    }
   }
-const celebrantePUT=(req, res=response)=> {
-    const id =req.params.id
-    res.json({
-        msg:'UPDATE API in controller folder CELEBRANTE',
-        id
-    });
+const celebrantePUT=async (req=request, res=response)=> {
+    const {body}=req;
+    const {id}= req.params;
+   
+
+    try {
+        const celebrante= await Celebrante.findByPk(id);
+        if (!celebrante){
+            return res.status(404).json({
+                msg:`User with id:  ${ id } does not exist`
+            });
+        }
+        await celebrante.update(body);
+        res.json(celebrante);
+
+
+
+    } catch (error) {
+        console.log(error),
+        res.status(500).json({   
+            msg:"An error appear"
+        })
+        
+    }
+   
   }
 const celebranteDELETE=(req,res=response)=>{
     res.json({
