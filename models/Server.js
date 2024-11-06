@@ -2,7 +2,7 @@ var express = require('express');
 var cors = require('express');
 const path = require('path'); 
 
-const sequelize=require('../db/sequelize')
+const sequelize=require('../db/database')
 
 
  
@@ -12,6 +12,7 @@ const sequelize=require('../db/sequelize')
         this.app=express();
         this.port= process.env.PORT;
         this.usersEndpoint='/users';
+        this.celebranteEndpoint='/celebrante';
         this.databaseConnection();
         this.middlewares();
         this.routes();
@@ -33,6 +34,8 @@ const sequelize=require('../db/sequelize')
 
     routes(){
         this.app.use( this.usersEndpoint,require('../routes/users.routes'))
+        this.app.use( this.celebranteEndpoint,require('../routes/celebrante.routes'))
+        
        
 
           
