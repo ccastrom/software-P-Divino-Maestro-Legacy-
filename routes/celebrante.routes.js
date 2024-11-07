@@ -6,7 +6,7 @@ router.get('/',celebranteGET);
 router.get('/:id',celebranteByIDGET);
 router.post('/',celebrantePOST);
 router.put('/:id',celebrantePUT);
-router.delete('/',celebranteDELETE);
+router.delete('/:id',celebranteDELETE);
 
 
 module.exports=router;

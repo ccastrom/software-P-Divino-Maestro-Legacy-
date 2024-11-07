@@ -74,10 +74,31 @@ const celebrantePUT=async (req=request, res=response)=> {
     }
    
   }
-const celebranteDELETE=(req,res=response)=>{
-    res.json({
-        msg:'DELETE API in controller folder CELEBRANTE'
-    });
+const celebranteDELETE= async(req,res=response)=>{
+    const {id}= req.params;
+    const {body}=req;
+
+    try {
+        const celebrante= await Celebrante.findByPk(id);
+        if (!celebrante){
+            return res.status(404).json({
+                msg:`User with id:  ${ id } does not exist`
+            });
+        }
+        await celebrante.update({estado:false});
+        //await celebrante.destroy();
+        res.json(celebrante);
+
+
+
+    } catch (error) {
+        console.log(error),
+        res.status(500).json({   
+            msg:"An error appear"
+        })
+        
+    }
+   
 }
 
 
