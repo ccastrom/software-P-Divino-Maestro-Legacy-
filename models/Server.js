@@ -33,6 +33,10 @@ const sequelize=require('../db/database')
     
 
     routes(){
+        
+        this.app.get('/',(req,res)=>{
+            res.send('Hello World');
+        })
         this.app.use( this.usersEndpoint,require('../routes/users.routes'))
         this.app.use( this.celebranteEndpoint,require('../routes/celebrante.routes'))
         
@@ -43,12 +47,15 @@ const sequelize=require('../db/database')
 
     }
     middlewares(){
+        this.app.use(express.static ('public'));
         this.app.set('views', path.join(__dirname, 'views'));
         this.app.set('view engine', 'ejs');
+    
+      
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }))
-        this.app.use(express.static ('public'));
+        
 
        
     }
