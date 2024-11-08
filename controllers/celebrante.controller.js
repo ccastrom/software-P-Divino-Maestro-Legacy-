@@ -5,11 +5,15 @@ const Celebrante= require('../models/celebrante');
 
 const celebranteGET= async (req=request, res=response)=> {
 
+     
+
     const celebrante= await Celebrante.findAll();
-    res.json({
-        msg:"GET API in controller folder CELEBRANTE",
-         celebrante
-    });
+     res.render('index.ejs',{result:celebrante})
+     console.log(celebrante[0].id);
+    // res.json({
+     
+    //      celebrante
+    // });
 
     }
 

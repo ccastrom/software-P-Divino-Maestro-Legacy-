@@ -1,27 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title></title>
-    <link rel='stylesheet' href='main.css' />
-  
-  </head>
-  <body>
-    <form>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+<head>
+  <title></title>
+  <link rel='stylesheet' href='/bootstrap/main.css' />
+
+</head>
+
+<body>
+  <div class="container" >
+    <div class="row min-vh-100 d-flex justify-content-center align-items-center " >
+      <div class=" col-6 " >
+        <h1>Celebrantes</h1>
+     
+        <div class="form-group ">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="text" class="form-control " id="myInput" onkeyup="myFunction()"aria-describedby="emailHelp"
+              placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+    
+          <h2></h2>
+        <ul id="myUL">
+         
+          <li><a href="#">Adele</a></li>
+          <li><a href="#">Agnes</a></li>
+          <li><a href="#"><%=result[0].nombre%></a></li>
+        
+          <li><a href="#">Billy</a></li>
+          <li><a href="#">Bob</a></li>
+        
+          <li><a href="#">Calvin</a></li>
+          <li><a href="#">Christina</a></li>
+          <li><a href="#">Cindy</a></li>
+        </ul>
+      
+     
+
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-      </div>
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <script src="/bootstrap.min.js"></script>
-  </body>
+    </div>
+
+
+
+</body>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/keyEvent.js"></script>
+
 </html>

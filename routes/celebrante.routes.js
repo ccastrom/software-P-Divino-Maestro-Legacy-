@@ -1,6 +1,9 @@
 const {Router}=require('express');
-const {celebranteGET,celebranteByIDGET,celebrantePOST, celebrantePUT, celebranteDELETE}=require('../controllers/celebrante.controller');
 const router= Router();
+
+
+
+const {celebranteGET,celebranteByIDGET,celebrantePOST, celebrantePUT, celebranteDELETE}=require('../controllers/celebrante.controller');
 
 router.get('/',celebranteGET);
 router.get('/:id',celebranteByIDGET);

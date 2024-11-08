@@ -48,10 +48,8 @@ const sequelize=require('../db/database')
     }
     middlewares(){
         this.app.use(express.static ('public'));
-        this.app.set('views', path.join(__dirname, 'views'));
-        this.app.set('view engine', 'ejs');
-    
-      
+        this.app.set('views', path.join(__dirname, '../views'));
+        this.app.set('view engine', 'ejs');   
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }))
