@@ -11,8 +11,8 @@ const sequelize=require('../db/database')
     constructor(){
         this.app=express();
         this.port= process.env.PORT;
-        this.usersEndpoint='/users';
         this.celebranteEndpoint='/celebrante';
+        this.padrinoEndpoint='/padrino';
         this.databaseConnection();
         this.middlewares();
         this.routes();
@@ -37,8 +37,9 @@ const sequelize=require('../db/database')
         this.app.get('/',(req,res)=>{
             res.send('Hello World');
         })
-        this.app.use( this.usersEndpoint,require('../routes/users.routes'))
+
         this.app.use( this.celebranteEndpoint,require('../routes/celebrante.routes'))
+        this.app.use( this.padrinoEndpoint,require('../routes/padrino.routes'))
         
        
 
