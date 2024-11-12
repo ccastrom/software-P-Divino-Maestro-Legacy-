@@ -13,6 +13,7 @@ const sequelize=require('../db/database')
         this.port= process.env.PORT;
         this.celebranteEndpoint='/celebrante';
         this.padrinoEndpoint='/padrino';
+        this.apoderadoEndpoint='/apoderado';
         this.databaseConnection();
         this.middlewares();
         this.routes();
@@ -40,6 +41,7 @@ const sequelize=require('../db/database')
 
         this.app.use( this.celebranteEndpoint,require('../routes/celebrante.routes'))
         this.app.use( this.padrinoEndpoint,require('../routes/padrino.routes'))
+        this.app.use(  this.apoderadoEndpoint,require('../routes/apoderado.routes'))
         
        
 
