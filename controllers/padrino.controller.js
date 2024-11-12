@@ -89,8 +89,8 @@ const padrinoDELETE= async(req,res=response)=>{
                 msg:`User with id:  ${ id } does not exist`
             });
         }
-        //await padrino.update({estado:false});
-        await padrino.destroy();
+        await padrino.update({certificado:false});
+        //await padrino.destroy();
         res.json(padrino);
 
 
