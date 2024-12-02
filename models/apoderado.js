@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const db = require('../db/database.js');
+const asociation= require('./asociations/asociations.js')
 
 
 
@@ -15,10 +16,6 @@ const apoderado = db.define('apoderado', {
     type: DataTypes.STRING
   },
   fono: {
-    type: DataTypes.STRING
-  },
-
-  domicilio: {
     type: DataTypes.STRING
   },
 

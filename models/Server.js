@@ -14,6 +14,7 @@ const sequelize=require('../db/database')
         this.celebranteEndpoint='/celebrante';
         this.padrinoEndpoint='/padrino';
         this.apoderadoEndpoint='/apoderado';
+        this.personaBautismo='/bautizante';
         this.databaseConnection();
         this.middlewares();
         this.routes();
@@ -42,6 +43,7 @@ const sequelize=require('../db/database')
         this.app.use( this.celebranteEndpoint,require('../routes/celebrante.routes'))
         this.app.use( this.padrinoEndpoint,require('../routes/padrino.routes'))
         this.app.use(  this.apoderadoEndpoint,require('../routes/apoderado.routes'))
+        this.app.use(  this.personaBautismo,require('../routes/personaBautismo.routes'))
         
        
 
