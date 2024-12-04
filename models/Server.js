@@ -14,7 +14,7 @@ const sequelize=require('../db/database')
         this.celebranteEndpoint='/celebrante';
         this.padrinoEndpoint='/padrino';
         this.apoderadoEndpoint='/apoderado';
-        this.personaBautismo='/bautizante';
+        this.personaBautismo='/PersonaBautismo';
         this.preBautizo='/preBautizo';
         this.databaseConnection();
         this.middlewares();
