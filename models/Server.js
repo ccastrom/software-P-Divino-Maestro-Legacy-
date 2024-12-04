@@ -3,6 +3,7 @@ var cors = require('express');
 const path = require('path'); 
 
 const sequelize=require('../db/database')
+const db_asociations= require('../models/asociations/asociations.js')
 
 
  
@@ -27,6 +28,8 @@ const sequelize=require('../db/database')
         try {
             await sequelize.authenticate();
             console.log('Connection has been established successfully.');
+            db_asociations;
+           
           } catch (error) {
             console.error('Unable to connect to the database:', error);
           }

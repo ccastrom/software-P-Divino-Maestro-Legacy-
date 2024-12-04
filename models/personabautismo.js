@@ -27,10 +27,12 @@ const personaBautismo = db.define('personaBautismo', {
     type: DataTypes.DATE
   },
   fk_apoderado: {
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
   fk_celebrante: {
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
   estado: {
     type: DataTypes.STRING

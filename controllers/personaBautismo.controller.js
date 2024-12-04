@@ -1,5 +1,6 @@
 const{response,request}=require('express');
 const PersonaBautismo= require('../models/personabautismo');
+const Apoderado= require('../models/apoderado.js');
 
 
 
@@ -7,7 +8,10 @@ const personaBautismoGET= async (req=request, res=response)=> {
 
      
 
-    const personaBautismo= await PersonaBautismo.findAll();
+    const personaBautismo= await PersonaBautismo.findAll({
+      
+       
+    });
      //res.render('index.ejs',{result:personaBautismo})
      console.log(personaBautismo[0].id);
     res.json({
@@ -20,7 +24,15 @@ const personaBautismoGET= async (req=request, res=response)=> {
     const personaBautismoByIDGET= async (req=request, res=response)=> {
         const {id}=req.params;
 
-        const personaBautismo= await PersonaBautismo.findByPk(id);
+        const personaBautismo= await PersonaBautismo.findByPk(id,{
+            include:[
+                {
+                    model: Apoderado,
+                    as:'apoderado',
+                    attributes: ['nombre_madre', 'nombre_padre', 'fono'],
+                },
+            ],
+        });
 
         if(personaBautismo){
             res.json({
