@@ -1,5 +1,7 @@
 const{response,request}=require('express');
-const PreBautizo= require('../models/preBautizo');
+const PreBautizo= require('../models/prebautizo');
+const Padrinos= require('../models/padrinos');
+const PersonaBautismo= require('../models/personabautismo.js');
 
 
 
@@ -7,7 +9,26 @@ const preBautizoGET= async (req=request, res=response)=> {
 
      
 
-    const preBautizo= await PreBautizo.findAll();
+    const preBautizo= await PreBautizo.findAll({
+        where:{
+            fk_PersonaBautismo:1,
+        },
+        attributes:[
+            "fk_PersonaBautismo"
+        ],
+        include:[
+            {
+                model: Padrinos,
+                as:'padrinos',
+                attributes: ['nombrePadrino_Madrina']
+            },
+            {
+                model: PersonaBautismo,
+                as:'PersonaBautismo',
+                attributes: ['nombre']
+            },
+        ],
+    });
      //res.render('index.ejs',{result:preBautizo})
      console.log(preBautizo[0].id);
     res.json({
@@ -20,7 +41,23 @@ const preBautizoGET= async (req=request, res=response)=> {
     const preBautizoByIDGET= async (req=request, res=response)=> {
         const {id}=req.params;
 
-        const preBautizo= await PreBautizo.findByPk(id);
+        const preBautizo= await PreBautizo.findByPk(id,{
+            attributes:[
+                "fk_PersonaBautismo"
+            ],
+            include:[
+                {
+                    model: Padrinos,
+                    as:'padrinos',
+                    attributes: ['nombrePadrino_Madrina']
+                },
+                {
+                    model: PersonaBautismo,
+                    as:'PersonaBautismo',
+                    attributes: ['nombre']
+                },
+            ],
+        });
 
         if(preBautizo){
             res.json({

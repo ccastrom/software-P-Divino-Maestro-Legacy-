@@ -1,6 +1,7 @@
 const{response,request}=require('express');
 const PersonaBautismo= require('../models/personabautismo');
 const Apoderado= require('../models/apoderado.js');
+const Celebrante= require('../models/celebrante.js');
 
 
 
@@ -25,11 +26,19 @@ const personaBautismoGET= async (req=request, res=response)=> {
         const {id}=req.params;
 
         const personaBautismo= await PersonaBautismo.findByPk(id,{
+            attributes:[
+                "nombre"
+            ],
             include:[
                 {
                     model: Apoderado,
                     as:'apoderado',
-                    attributes: ['nombre_madre', 'nombre_padre', 'fono'],
+                    attributes: ['nombre_madre', 'nombre_padre', 'fono']
+                },
+                {
+                    model: Celebrante,
+                    as:'celebrante',
+                    attributes: ['nombre']
                 },
             ],
         });
