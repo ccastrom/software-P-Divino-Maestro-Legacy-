@@ -2,7 +2,9 @@ const{response,request}=require('express');
 const PersonaBautismo= require('../models/personabautismo');
 const Apoderado= require('../models/apoderado.js');
 const Celebrante= require('../models/celebrante.js');
-
+const Padrinos= require('../models/padrinos.js');
+const PreBautizo= require('../models/preBautizo.js');
+const { Op, fn,literal } = require('sequelize');
 
 
 const personaBautismoGET= async (req=request, res=response)=> {
@@ -27,20 +29,42 @@ const personaBautismoGET= async (req=request, res=response)=> {
 
         const personaBautismo= await PersonaBautismo.findByPk(id,{
             attributes:[
-                "nombre"
+                "nombre",
+
+             
             ],
+            
             include:[
                 {
                     model: Apoderado,
                     as:'apoderado',
+                  
                     attributes: ['nombre_madre', 'nombre_padre', 'fono']
                 },
                 {
-                    model: Celebrante,
-                    as:'celebrante',
-                    attributes: ['nombre']
+                     model: Celebrante,
+                     as:'celebrante',
+                     attributes: ['nombre','rol']
+                 },
+                 {
+                    model: Padrinos,
+                    as:'padrinos',
+                    attributes: [[
+                        fn(
+                            'GROUP_CONCAT',
+                        
+                            literal("padrinos.nombrePadrino_Madrina SEPARATOR ','")
+                          ),
+                          'nombresPadrinos'
+                    ]],
+                    through: {
+                        attributes: ['fecha_prebautizo', 'hora_prebautizo']
                 },
+            }
+             
             ],
+            
+                group: ['personabautismo.id']
         });
 
         if(personaBautismo){

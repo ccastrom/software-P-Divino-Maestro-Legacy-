@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const db = require('../db/database.js');
-const asociation= require('./asociations/asociations.js')
+
 
 
 

@@ -3,7 +3,7 @@ var cors = require('express');
 const path = require('path'); 
 
 const sequelize=require('../db/database')
-const db_asociations= require('../models/asociations/asociations.js')
+const db_asociations= require('../models/asociations/PersonaBautismo.association.js');
 
 
  
