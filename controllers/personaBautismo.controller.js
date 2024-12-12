@@ -3,20 +3,19 @@ const PersonaBautismo= require('../models/personabautismo');
 const Apoderado= require('../models/apoderado.js');
 const Celebrante= require('../models/celebrante.js');
 const Padrinos= require('../models/padrinos.js');
-const PreBautizo= require('../models/preBautizo.js');
+const PreBautizo= require('../models/prebautizo.js');
 const { Op, fn,literal } = require('sequelize');
+const {SELECTHijosBautizados} = require('../models/query/query.js');
 
 
 const personaBautismoGET= async (req=request, res=response)=> {
 
      
 
-    const personaBautismo= await PersonaBautismo.findAll({
-      
+    const personaBautismo= await PersonaBautismo.findAll(
+        SELECTHijosBautizados
        
-    });
-     //res.render('index.ejs',{result:personaBautismo})
-     console.log(personaBautismo[0].id);
+    );
     res.json({
      
          personaBautismo
@@ -27,45 +26,9 @@ const personaBautismoGET= async (req=request, res=response)=> {
     const personaBautismoByIDGET= async (req=request, res=response)=> {
         const {id}=req.params;
 
-        const personaBautismo= await PersonaBautismo.findByPk(id,{
-            attributes:[
-                "nombre",
-
-             
-            ],
-            
-            include:[
-                {
-                    model: Apoderado,
-                    as:'apoderado',
-                  
-                    attributes: ['nombre_madre', 'nombre_padre', 'fono']
-                },
-                {
-                     model: Celebrante,
-                     as:'celebrante',
-                     attributes: ['nombre','rol']
-                 },
-                 {
-                    model: Padrinos,
-                    as:'padrinos',
-                    attributes: [[
-                        fn(
-                            'GROUP_CONCAT',
-                        
-                            literal("padrinos.nombrePadrino_Madrina SEPARATOR ','")
-                          ),
-                          'nombresPadrinos'
-                    ]],
-                    through: {
-                        attributes: ['fecha_prebautizo', 'hora_prebautizo']
-                },
-            }
-             
-            ],
-            
-                group: ['personabautismo.id']
-        });
+        const personaBautismo= await PersonaBautismo.findByPk(id,
+            SELECTHijosBautizados
+        );
 
         if(personaBautismo){
             res.json({
